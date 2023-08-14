@@ -11,23 +11,27 @@ def read_csv(filename):
 
 
 def store_conversation_data(df):
-
-
     for index, row in df.iterrows():
         conversation_id = row['Conversation ID']
         text = row['Text']
+        source = row['Source']
 
-        if conversation_id not in Sentences:
-            Sentences[conversation_id] = {}
+        if source == "user":
+            if conversation_id not in Sentences:
+                Sentences[conversation_id] = []
 
-        Sentences[conversation_id][index] = text
+        Sentences[conversation_id].append((source, text))
 
     return Sentences
+
 
 def print_conversation_data(Sentences):
     for conversation_id, text_dict in Sentences.items():
         print("Conversation ID:", conversation_id)
-        for index, text in text_dict.items():
-            print(f"Line {index}:", text)
+        for index,(source, text) in enumerate(text_dict, start=1):
+            print(f"Line {index} (Source: {source}):", text)
         print()
+
+
+
 
