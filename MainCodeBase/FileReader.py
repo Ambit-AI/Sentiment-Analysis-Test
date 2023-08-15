@@ -2,12 +2,12 @@
 import pandas as pd
 
 # Importing Variables
-from GlobalVaraibles import Sentences
+from GlobalVaraibles import Sentences, Number_of_Sentences
 
 
 #read From CSV file from Annotated Data Sets Folder
-def read_csv(filename):
-    return pd.read_excel(filename)
+def read_csv(filename, Number_of_Sentences):
+    return pd.read_excel(filename, nrows=Number_of_Sentences)
 
 
 def store_conversation_data(df):
